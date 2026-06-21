@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Егор Михайлов — Разработчик · Python / C++ / Java</title>
+<title>Михайлов Егор — Разработчик · Python / C++ / Java</title>
 <meta name="description" content="Меня зовут Егор Михайлов. Я разработчик и студент программы Informatik в Bauhaus-Universität Weimar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -426,6 +426,63 @@ section {
 }
 
 /* ===========================================================
+   Demo — bubble sort visualization
+   =========================================================== */
+.demo-box {
+  border: 1px solid var(--line-strong);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+#sort-canvas {
+  display: block;
+  width: 100%;
+  height: clamp(180px, 32vw, 260px);
+}
+
+.demo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.demo-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.demo-meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.demo-meta-value {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.demo-status::before {
+  content: "● ";
+  color: var(--ink);
+  animation: blueprint-pulse 1.6s ease-in-out infinite;
+}
+
+.demo-note {
+  font-size: 0.92rem;
+  color: var(--ink-faint);
+  max-width: 38em;
+  margin: 1.25rem 0 0;
+}
+
+/* ===========================================================
    Contact
    =========================================================== */
 .contact-box {
@@ -578,7 +635,7 @@ div[data-lang-group].is-active {
       <span data-lang="ru">Веймар, Германия</span><span data-lang="en">Weimar, Germany</span><span data-lang="de">Weimar, Deutschland</span>
     </p>
     <h1 class="hero-name" data-reveal="fade-up" data-reveal-delay="1">
-      <span data-lang="ru">Егор Михайлов</span><span data-lang="en">Egor Mikhailov</span><span data-lang="de">Egor Mikhailov</span>
+      <span data-lang="ru">Михайлов Егор</span><span data-lang="en">Egor Mikhailov</span><span data-lang="de">Egor Mikhailov</span>
     </h1>
     <p class="hero-role" data-reveal="fade-up" data-reveal-delay="2">
       <span data-lang="ru">Разработчик · Python / C++ / Java</span><span data-lang="en">Developer · Python / C++ / Java</span><span data-lang="de">Entwickler · Python / C++ / Java</span>
@@ -732,9 +789,9 @@ div[data-lang-group].is-active {
           
           <li>Git</li>
           
-          <li>Linux</li>
+          <li>Windows</li>
           
-          <li>VS Code</li>
+          <li>JetBrains IDEs</li>
           
           <li>CMake</li>
           
@@ -744,9 +801,9 @@ div[data-lang-group].is-active {
           
           <li>Git</li>
           
-          <li>Linux</li>
+          <li>Windows</li>
           
-          <li>VS Code</li>
+          <li>JetBrains IDEs</li>
           
           <li>CMake</li>
           
@@ -756,9 +813,9 @@ div[data-lang-group].is-active {
           
           <li>Git</li>
           
-          <li>Linux</li>
+          <li>Windows</li>
           
-          <li>VS Code</li>
+          <li>JetBrains IDEs</li>
           
           <li>CMake</li>
           
@@ -807,6 +864,34 @@ div[data-lang-group].is-active {
   </div>
 </section>
 
+<section id="demo" data-reveal="fade-up">
+  <div class="wrap">
+    <div class="demo-box" data-reveal="fade-up" data-reveal-delay="1">
+      <canvas id="sort-canvas" aria-hidden="true"></canvas>
+      <div class="demo-meta">
+        <span class="demo-meta-item">
+          <span class="demo-meta-label">
+            <span data-lang="ru">Сложность</span><span data-lang="en">Complexity</span><span data-lang="de">Komplexität</span>
+          </span>
+          <span class="demo-meta-value">O(n²)</span>
+        </span>
+        <span class="demo-meta-item">
+          <span class="demo-meta-label">ALGORITHM</span>
+          <span class="demo-meta-value">bubble_sort()</span>
+        </span>
+        <span class="demo-meta-item">
+          <span class="demo-meta-label">STATUS</span>
+          <span class="demo-meta-value demo-status" id="sort-status" data-state="running">running</span>
+        </span>
+      </div>
+    </div>
+
+    <p class="demo-note">
+      <span data-lang="ru">Эта визуализация показывает работу алгоритма сортировки пузырьком: столбики представляют элементы массива, сравниваемая пара подсвечивается перед обменом. Цикл повторяется бесконечно на случайных данных.</span><span data-lang="en">This visualization shows the bubble sort algorithm at work: each bar represents an array element, and the compared pair is highlighted before each swap. The cycle repeats endlessly on randomized data.</span><span data-lang="de">Diese Visualisierung zeigt den Bubble-Sort-Algorithmus in Aktion: Jeder Balken steht für ein Array-Element, das verglichene Paar wird vor dem Tausch hervorgehoben. Der Zyklus wiederholt sich endlos mit zufälligen Daten.</span>
+    </p>
+  </div>
+</section>
+
 <section id="contact" data-reveal="fade-up">
   <div class="wrap">
     <div class="section-head">
@@ -823,7 +908,7 @@ div[data-lang-group].is-active {
         <span class="contact-email-label">
           <span data-lang="ru">Email</span><span data-lang="en">Email</span><span data-lang="de">Email</span>
         </span>
-        <a class="contact-email" href="mailto:egor.s.mikhaylov@gmail.com">egor.s.mikhaylov@gmail.com</a>
+        <a class="contact-email" href="mailto:egor.s.mikhailov@gmail.com">egor.s.mikhailov@gmail.com</a>
       </div>
     </div>
   </div>
@@ -832,7 +917,7 @@ div[data-lang-group].is-active {
 <footer>
   <div class="wrap">
     <span>
-      <span data-lang="ru">© 2026 Егор Михайлов</span><span data-lang="en">© 2026 Egor Mikhailov</span><span data-lang="de">© 2026 Egor Mikhailov</span>
+      <span data-lang="ru">© 2026 Михайлов Егор</span><span data-lang="en">© 2026 Egor Mikhailov</span><span data-lang="de">© 2026 Egor Mikhailov</span>
     </span>
     <span class="footer-shapes" aria-hidden="true">
       <span></span><span></span><span></span>
@@ -861,6 +946,18 @@ div[data-lang-group].is-active {
 
     document.documentElement.setAttribute("lang", lang);
     window.__currentLang = lang;
+
+    var statusEl = document.getElementById("sort-status");
+    if (statusEl && statusEl.dataset.state) {
+      var labels = {
+        running: { ru: "выполняется", en: "running", de: "läuft" },
+        done: { ru: "готово", en: "done", de: "fertig" }
+      };
+      var state = statusEl.dataset.state;
+      if (labels[state] && labels[state][lang]) {
+        statusEl.textContent = labels[state][lang];
+      }
+    }
   }
 
   function detectInitialLanguage() {
@@ -882,7 +979,162 @@ div[data-lang-group].is-active {
 
     setLanguage(detectInitialLanguage());
     initRevealAnimations();
+    initBubbleSort();
   });
+
+  function initBubbleSort() {
+    var canvas = document.getElementById("sort-canvas");
+    if (!canvas || !canvas.getContext) return;
+
+    var ctx = canvas.getContext("2d");
+    var statusEl = document.getElementById("sort-status");
+    var dpr = window.devicePixelRatio || 1;
+
+    var BAR_COUNT = 22;
+    var values = [];
+    var i = 0; // внешний индекс прохода bubble sort
+    var j = 0; // внутренний индекс сравнения
+    var isRunning = true;
+    var swapping = null; // {a, b, progress} — анимация обмена
+    var pauseTimer = null;
+    var rafId = null;
+
+    function randomValues() {
+      var arr = [];
+      for (var k = 0; k < BAR_COUNT; k++) {
+        arr.push(0.08 + Math.random() * 0.92);
+      }
+      return arr;
+    }
+
+    function setStatus(state) {
+      if (!statusEl) return;
+      statusEl.dataset.state = state;
+      var lang = window.__currentLang || "ru";
+      var labels = {
+        running: { ru: "выполняется", en: "running", de: "läuft" },
+        done: { ru: "готово", en: "done", de: "fertig" }
+      };
+      statusEl.textContent = (labels[state] && labels[state][lang]) || state;
+    }
+
+    function resetSort() {
+      values = randomValues();
+      i = 0;
+      j = 0;
+      swapping = null;
+      isRunning = true;
+      setStatus("running");
+    }
+
+    function resizeCanvas() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      var cssHeight = parseFloat(getComputedStyle(canvas).height) || 220;
+      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(1, Math.floor(cssHeight * dpr));
+    }
+
+    function draw() {
+      var w = canvas.width;
+      var h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      var gap = w * 0.012;
+      var barWidth = (w - gap * (BAR_COUNT - 1)) / BAR_COUNT;
+      var maxBarHeight = h * 0.92;
+      var baseline = h * 0.96;
+
+      for (var k = 0; k < values.length; k++) {
+        var barHeight = values[k] * maxBarHeight;
+        var x = k * (barWidth + gap);
+        var y = baseline - barHeight;
+
+        var isComparing = (k === j || k === j + 1) && isRunning;
+        ctx.globalAlpha = isComparing ? 1 : 0.55;
+        ctx.fillStyle = "#F4F3EF";
+        ctx.fillRect(x, y, barWidth, barHeight);
+
+        if (isComparing) {
+          ctx.strokeStyle = "#F4F3EF";
+          ctx.lineWidth = 1 * dpr;
+          ctx.strokeRect(x - 2 * dpr, y - 2 * dpr, barWidth + 4 * dpr, barHeight + 4 * dpr);
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    var lastStep = 0;
+    var STEP_INTERVAL = 90; // ms между сравнениями — задаёт темп визуализации
+
+    function tick(timestamp) {
+      if (!isRunning) {
+        rafId = requestAnimationFrame(tick);
+        return;
+      }
+
+      if (!lastStep) lastStep = timestamp;
+
+      if (timestamp - lastStep >= STEP_INTERVAL) {
+        lastStep = timestamp;
+        stepSort();
+      }
+
+      draw();
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function stepSort() {
+      var n = values.length;
+
+      if (i >= n - 1) {
+        // сортировка завершена — пауза, затем рестарт с новыми данными
+        isRunning = false;
+        setStatus("done");
+        pauseTimer = setTimeout(function () {
+          resetSort();
+        }, 1400);
+        return;
+      }
+
+      if (j >= n - i - 1) {
+        j = 0;
+        i++;
+        return;
+      }
+
+      if (values[j] > values[j + 1]) {
+        var tmp = values[j];
+        values[j] = values[j + 1];
+        values[j + 1] = tmp;
+      }
+      j++;
+    }
+
+    resetSort();
+    resizeCanvas();
+
+    window.addEventListener("resize", resizeCanvas);
+
+    // Останавливаем requestAnimationFrame-цикл, когда секция не видна,
+    // чтобы не тратить ресурсы зря.
+    if ("IntersectionObserver" in window) {
+      var visObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            if (!rafId) rafId = requestAnimationFrame(tick);
+          } else {
+            if (rafId) {
+              cancelAnimationFrame(rafId);
+              rafId = null;
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+      visObserver.observe(canvas);
+    } else {
+      rafId = requestAnimationFrame(tick);
+    }
+  }
 
   function initRevealAnimations() {
     var revealEls = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
