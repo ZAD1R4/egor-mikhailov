@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Михайлов Егор — Разработчик · Python / C++ / Java</title>
+<meta name="description" content="Меня зовут Егор Михайлов. Я разработчик и студент программы Informatik в Bauhaus-Universität Weimar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================
+   Design tokens — Bauhaus-inspired palette & type system
+   =========================================================== */
+:root {
+  --paper: #FAFAF7;
+  --ink: #181816;
+  --ink-soft: #5C5C56;
+  --red: #E63B2E;
+  --blue: #1E5AA8;
+  --yellow: #F2B705;
+  --line: #D8D6CC;
+
+  --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-body: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  --maxw: 980px;
+  --gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root { --motion-ok: 1; }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+}
+
+/* ===========================================================
+   Top bar: language switch + nav
+   =========================================================== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 250, 247, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 2px solid var(--ink);
+}
+
+.topbar .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.topbar nav {
+  display: flex;
+  gap: clamp(0.9rem, 2vw, 1.8rem);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.topbar nav a {
+  position: relative;
+  padding-bottom: 4px;
+  white-space: nowrap;
+}
+
+.topbar nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--red);
+  transition: width 0.2s ease;
+}
+
+.topbar nav a:hover::after,
+.topbar nav a:focus-visible::after {
+  width: 100%;
+}
+
+.langswitch {
+  display: flex;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  border: 2px solid var(--ink);
+}
+
+.langswitch button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+
+.langswitch button + button {
+  border-left: 2px solid var(--ink);
+}
+
+.langswitch button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.langswitch button:hover:not([aria-pressed="true"]) {
+  background: var(--yellow);
+}
+
+/* ===========================================================
+   Hero — Bauhaus geometric composition
+   =========================================================== */
+.hero {
+  position: relative;
+  padding: clamp(3rem, 9vw, 6.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.hero-eyebrow .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+  display: inline-block;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 9vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  color: var(--ink);
+  margin: 0;
+}
+
+.hero-subrole {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 32em;
+}
+
+.hero-shapes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(46vw, 420px);
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-shapes svg {
+  width: 100%;
+  height: 100%;
+}
+
+.shape-spin {
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shape-spin {
+    animation: spin 40s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===========================================================
+   Section scaffolding
+   =========================================================== */
+section {
+  padding: clamp(3rem, 7vw, 5rem) 0;
+  border-top: 2px solid var(--ink);
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.section-mark {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* ===========================================================
+   About
+   =========================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  max-width: 42em;
+}
+
+.about-grid p {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.about-grid p:first-of-type {
+  font-size: 1.18rem;
+  font-weight: 600;
+}
+
+/* ===========================================================
+   Skills
+   =========================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-group {
+  border: 2px solid var(--ink);
+  padding: 1.25rem 1.4rem;
+  position: relative;
+}
+
+.skill-group::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 28px;
+  height: 6px;
+}
+
+.skill-group:nth-child(1)::before { background: var(--red); }
+.skill-group:nth-child(2)::before { background: var(--blue); }
+.skill-group:nth-child(3)::before { background: var(--yellow); }
+
+.skill-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 0.85rem;
+}
+
+.skill-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-items li {
+  font-size: 1rem;
+  font-weight: 600;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.skill-items li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  background: var(--ink);
+}
+
+/* ===========================================================
+   Contact
+   =========================================================== */
+.contact-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border: 2px solid var(--ink);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  background: linear-gradient(135deg, transparent 0%, transparent 65%, var(--yellow) 65%, var(--yellow) 100%);
+  background-size: 220% 220%;
+  background-position: top left;
+}
+
+.contact-text {
+  max-width: 34em;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.contact-email {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.6vw, 1.3rem);
+  font-weight: 700;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+
+.contact-email-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+  font-weight: 400;
+}
+
+.contact-email-wrap a {
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.contact-email-wrap a:hover {
+  transform: translateY(-2px);
+}
+
+/* ===========================================================
+   Footer
+   =========================================================== */
+footer {
+  padding: 2rem 0 3rem;
+}
+
+footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.footer-shapes {
+  display: flex;
+  gap: 6px;
+}
+
+.footer-shapes span {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+}
+
+.footer-shapes span:nth-child(1) { background: var(--red); border-radius: 50%; }
+.footer-shapes span:nth-child(2) { background: var(--blue); }
+.footer-shapes span:nth-child(3) {
+  background: var(--yellow);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* ===========================================================
+   [data-lang] visibility — only active language shows
+   =========================================================== */
+[data-lang] {
+  display: none;
+}
+
+[data-lang].is-active {
+  display: revert;
+}
+
+span[data-lang].is-active {
+  display: inline;
+}
+
+li[data-lang-group].is-active,
+div[data-lang-group].is-active {
+  display: contents;
+}
+
+/* ===========================================================
+   Responsive
+   =========================================================== */
+@media (max-width: 640px) {
+  .hero-shapes { width: 60vw; opacity: 0.6; }
+  .contact-box { flex-direction: column; align-items: flex-start; }
+  .topbar nav { font-size: 0.72rem; gap: 0.85rem; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <nav aria-label="Основная навигация">
+      <a href="#about">
+        <span data-lang="ru">О себе</span><span data-lang="en">About</span><span data-lang="de">Über mich</span>
+      </a>
+      <a href="#skills">
+        <span data-lang="ru">Навыки</span><span data-lang="en">Skills</span><span data-lang="de">Fähigkeiten</span>
+      </a>
+      <a href="#contact">
+        <span data-lang="ru">Контакты</span><span data-lang="en">Contact</span><span data-lang="de">Kontakt</span>
+      </a>
+    </nav>
+    <div class="langswitch" role="group" aria-label="Выбор языка / Language switch / Sprachauswahl">
+      
+      <button type="button" data-lang-btn="ru" aria-pressed="true">RU</button>
+      
+      <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      
+      <button type="button" data-lang-btn="de" aria-pressed="false">DE</button>
+      
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <p class="hero-eyebrow">
+      <span class="dot" aria-hidden="true"></span>
+      <span data-lang="ru">Веймар, Германия</span><span data-lang="en">Weimar, Germany</span><span data-lang="de">Weimar, Deutschland</span>
+    </p>
+    <h1 class="hero-name">Михайлов Егор</h1>
+    <p class="hero-role">
+      <span data-lang="ru">Разработчик · Python / C++ / Java</span><span data-lang="en">Developer · Python / C++ / Java</span><span data-lang="de">Entwickler · Python / C++ / Java</span>
+    </p>
+    <p class="hero-subrole">
+      <span data-lang="ru">Студент Bauhaus-Universität Weimar, Informatik</span><span data-lang="en">Informatik student at Bauhaus-Universität Weimar</span><span data-lang="de">Informatik-Student an der Bauhaus-Universität Weimar</span>
+    </p>
+  </div>
+  <div class="hero-shapes" aria-hidden="true">
+    <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+      <g class="shape-spin" style="transform-origin: 280px 180px;">
+        <circle cx="280" cy="180" r="95" fill="none" stroke="#1E5AA8" stroke-width="3" opacity="0.85"/>
+      </g>
+      <rect x="60" y="260" width="150" height="150" fill="#F2B705" opacity="0.9"/>
+      <polygon points="330,330 410,470 250,470" fill="#E63B2E" opacity="0.92"/>
+      <circle cx="100" cy="90" r="14" fill="#181816"/>
+    </svg>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-mark" aria-hidden="true" style="background:#E63B2E;"></span>
+      <h2 class="section-title">
+        <span data-lang="ru">О себе</span><span data-lang="en">About</span><span data-lang="de">Über mich</span>
+      </h2>
+    </div>
+    <div class="about-grid">
+      
+      <div data-lang-group="ru" data-lang="ru">
+        
+        <p>Меня зовут Егор Михайлов. Я разработчик и студент программы Informatik в Bauhaus-Universität Weimar.</p>
+        
+        <p>Пишу на Python, C++ и Java — мне интересно и системное программирование, и быстрая разработка прикладных решений. Люблю разбираться, как всё устроено внутри, и доводить код до рабочего состояния, а не до состояния «почти готово».</p>
+        
+        <p>Сейчас совмещаю учёбу с практикой: изучаю архитектуру программ, алгоритмы и инструменты разработки, которые использую и в учебных, и в личных проектах.</p>
+        
+      </div>
+      
+      <div data-lang-group="en" data-lang="en">
+        
+        <p>I'm Egor Mikhailov, a developer and Informatik student at Bauhaus-Universität Weimar.</p>
+        
+        <p>I write code in Python, C++ and Java — I enjoy both systems programming and building practical applications quickly. I like understanding how things work under the hood, and getting code to actually work, not just "almost finished".</p>
+        
+        <p>Right now I'm combining studies with hands-on practice: exploring software architecture, algorithms, and development tools that I use in both coursework and personal projects.</p>
+        
+      </div>
+      
+      <div data-lang-group="de" data-lang="de">
+        
+        <p>Ich bin Egor Mikhailov, Entwickler und Informatik-Student an der Bauhaus-Universität Weimar.</p>
+        
+        <p>Ich programmiere in Python, C++ und Java — mich interessieren sowohl systemnahe Programmierung als auch die schnelle Umsetzung praktischer Anwendungen. Ich mag es, zu verstehen, wie etwas wirklich funktioniert, und Code so weit zu bringen, dass er tatsächlich läuft — nicht nur "fast fertig" ist.</p>
+        
+        <p>Aktuell verbinde ich das Studium mit praktischer Erfahrung: Ich beschäftige mich mit Softwarearchitektur, Algorithmen und Entwicklungswerkzeugen, die ich sowohl im Studium als auch in eigenen Projekten einsetze.</p>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-mark" aria-hidden="true" style="background:#1E5AA8;"></span>
+      <h2 class="section-title">
+        <span data-lang="ru">Навыки</span><span data-lang="en">Skills</span><span data-lang="de">Fähigkeiten</span>
+      </h2>
+    </div>
+    <div class="skills-grid">
+      
+      <div class="skill-group">
+        <p class="skill-label">
+          <span data-lang="ru">Языки программирования</span><span data-lang="en">Programming languages</span><span data-lang="de">Programmiersprachen</span>
+        </p>
+        
+        <ul class="skill-items" data-lang="ru">
+          
+          <li>Python</li>
+          
+          <li>C++</li>
+          
+          <li>Java</li>
+          
+        </ul>
+        
+        <ul class="skill-items" data-lang="en">
+          
+          <li>Python</li>
+          
+          <li>C++</li>
+          
+          <li>Java</li>
+          
+        </ul>
+        
+        <ul class="skill-items" data-lang="de">
+          
+          <li>Python</li>
+          
+          <li>C++</li>
+          
+          <li>Java</li>
+          
+        </ul>
+        
+      </div>
+      
+      <div class="skill-group">
+        <p class="skill-label">
+          <span data-lang="ru">Инструменты</span><span data-lang="en">Tools</span><span data-lang="de">Werkzeuge</span>
+        </p>
+        
+        <ul class="skill-items" data-lang="ru">
+          
+          <li>Git</li>
+          
+          <li>Linux</li>
+          
+          <li>VS Code</li>
+          
+          <li>CMake</li>
+          
+        </ul>
+        
+        <ul class="skill-items" data-lang="en">
+          
+          <li>Git</li>
+          
+          <li>Linux</li>
+          
+          <li>VS Code</li>
+          
+          <li>CMake</li>
+          
+        </ul>
+        
+        <ul class="skill-items" data-lang="de">
+          
+          <li>Git</li>
+          
+          <li>Linux</li>
+          
+          <li>VS Code</li>
+          
+          <li>CMake</li>
+          
+        </ul>
+        
+      </div>
+      
+      <div class="skill-group">
+        <p class="skill-label">
+          <span data-lang="ru">Область интересов</span><span data-lang="en">Areas of interest</span><span data-lang="de">Interessensgebiete</span>
+        </p>
+        
+        <ul class="skill-items" data-lang="ru">
+          
+          <li>Алгоритмы и структуры данных</li>
+          
+          <li>Backend-разработка</li>
+          
+          <li>Системное программирование</li>
+          
+        </ul>
+        
+        <ul class="skill-items" data-lang="en">
+          
+          <li>Algorithms & data structures</li>
+          
+          <li>Backend development</li>
+          
+          <li>Systems programming</li>
+          
+        </ul>
+        
+        <ul class="skill-items" data-lang="de">
+          
+          <li>Algorithmen & Datenstrukturen</li>
+          
+          <li>Backend-Entwicklung</li>
+          
+          <li>Systemprogrammierung</li>
+          
+        </ul>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-mark" aria-hidden="true" style="background:#F2B705;"></span>
+      <h2 class="section-title">
+        <span data-lang="ru">Контакты</span><span data-lang="en">Contact</span><span data-lang="de">Kontakt</span>
+      </h2>
+    </div>
+    <div class="contact-box">
+      <p class="contact-text">
+        <span data-lang="ru">Открыт к учебным и рабочим проектам, а также к новым знакомствам.</span><span data-lang="en">Open to academic and work projects, as well as new connections.</span><span data-lang="de">Offen für akademische und berufliche Projekte sowie neue Kontakte.</span>
+      </p>
+      <div class="contact-email-wrap">
+        <span class="contact-email-label">
+          <span data-lang="ru">Email</span><span data-lang="en">Email</span><span data-lang="de">Email</span>
+        </span>
+        <a class="contact-email" href="mailto:egor.s.mikhaylov@gmail.com">egor.s.mikhaylov@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>
+      <span data-lang="ru">© 2026 Михайлов Егор</span><span data-lang="en">© 2026 Egor Mikhailov</span><span data-lang="de">© 2026 Egor Mikhailov</span>
+    </span>
+    <span class="footer-shapes" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var LANGS = ["ru", "en", "de"];
+  var STORAGE_KEY = null; // браузерное хранилище не используем — состояние живёт в памяти страницы
+
+  function setLanguage(lang) {
+    if (LANGS.indexOf(lang) === -1) return;
+
+    document.querySelectorAll("[data-lang]").forEach(function (el) {
+      el.classList.toggle("is-active", el.getAttribute("data-lang") === lang);
+    });
+
+    document.querySelectorAll("[data-lang-btn]").forEach(function (btn) {
+      var isActive = btn.getAttribute("data-lang-btn") === lang;
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
+    document.documentElement.setAttribute("lang", lang);
+    window.__currentLang = lang;
+  }
+
+  function detectInitialLanguage() {
+    var fromHash = window.location.hash.replace("#", "");
+    if (LANGS.indexOf(fromHash) !== -1) return fromHash;
+
+    var nav = (navigator.language || "ru").slice(0, 2).toLowerCase();
+    if (LANGS.indexOf(nav) !== -1) return nav;
+
+    return "ru";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("[data-lang-btn]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setLanguage(btn.getAttribute("data-lang-btn"));
+      });
+    });
+
+    setLanguage(detectInitialLanguage());
+  });
+})();
+
+</script>
+</body>
+</html>
