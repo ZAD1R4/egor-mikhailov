@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Михайлов Егор — Разработчик · Python / C++ / Java</title>
-<meta name="description" content="Меня зовут Егор Михайлов. Я разработчик и студент программы Informatik в Bauhaus-Universität Weimar.">
+<title>Egor Mikhailov — Developer · Python / C++ / Java</title>
+<meta name="description" content="I'm Egor Mikhailov, a developer and Informatik student at Bauhaus-Universität Weimar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -426,6 +426,93 @@ section {
 }
 
 /* ===========================================================
+   Services
+   =========================================================== */
+.services-intro {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  max-width: 38em;
+  margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.capabilities-box {
+  border: 1px solid var(--line-strong);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.capabilities-title {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 1.1rem;
+}
+
+.capabilities-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem 1.5rem;
+}
+
+.capabilities-list li {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.capabilities-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  background: var(--ink-soft);
+}
+
+.services-price-note {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  max-width: 38em;
+  margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.services-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 0.85rem 1.4rem;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s var(--ease);
+}
+
+.services-cta:hover {
+  background: var(--ink);
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+
+.services-cta span[aria-hidden] {
+  transition: transform 0.2s ease;
+}
+
+.services-cta:hover span[aria-hidden] {
+  transform: translateX(3px);
+}
+
+/* ===========================================================
    Demo — bubble sort visualization
    =========================================================== */
 .demo-box {
@@ -607,20 +694,23 @@ div[data-lang-group].is-active {
   <div class="wrap">
     <nav aria-label="Основная навигация">
       <a href="#about">
-        <span data-lang="ru">О себе</span><span data-lang="en">About</span><span data-lang="de">Über mich</span>
+        <span data-lang="en">About</span><span data-lang="ru">О себе</span><span data-lang="de">Über mich</span>
       </a>
       <a href="#skills">
-        <span data-lang="ru">Навыки</span><span data-lang="en">Skills</span><span data-lang="de">Fähigkeiten</span>
+        <span data-lang="en">Skills</span><span data-lang="ru">Навыки</span><span data-lang="de">Fähigkeiten</span>
+      </a>
+      <a href="#services">
+        <span data-lang="en">Services</span><span data-lang="ru">Услуги</span><span data-lang="de">Leistungen</span>
       </a>
       <a href="#contact">
-        <span data-lang="ru">Контакты</span><span data-lang="en">Contact</span><span data-lang="de">Kontakt</span>
+        <span data-lang="en">Contact</span><span data-lang="ru">Контакты</span><span data-lang="de">Kontakt</span>
       </a>
     </nav>
     <div class="langswitch" role="group" aria-label="Выбор языка / Language switch / Sprachauswahl">
       
-      <button type="button" data-lang-btn="ru" aria-pressed="true">RU</button>
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
       
-      <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang-btn="ru" aria-pressed="false">RU</button>
       
       <button type="button" data-lang-btn="de" aria-pressed="false">DE</button>
       
@@ -632,16 +722,16 @@ div[data-lang-group].is-active {
   <div class="wrap hero-grid">
     <p class="hero-eyebrow" data-reveal="fade-up" data-reveal-delay="0">
       <span class="dot" aria-hidden="true"></span>
-      <span data-lang="ru">Веймар, Германия</span><span data-lang="en">Weimar, Germany</span><span data-lang="de">Weimar, Deutschland</span>
+      <span data-lang="en">Weimar, Germany</span><span data-lang="ru">Веймар, Германия</span><span data-lang="de">Weimar, Deutschland</span>
     </p>
     <h1 class="hero-name" data-reveal="fade-up" data-reveal-delay="1">
-      <span data-lang="ru">Михайлов Егор</span><span data-lang="en">Egor Mikhailov</span><span data-lang="de">Egor Mikhailov</span>
+      <span data-lang="en">Egor Mikhailov</span><span data-lang="ru">Михайлов Егор</span><span data-lang="de">Egor Mikhailov</span>
     </h1>
     <p class="hero-role" data-reveal="fade-up" data-reveal-delay="2">
-      <span data-lang="ru">Разработчик · Python / C++ / Java</span><span data-lang="en">Developer · Python / C++ / Java</span><span data-lang="de">Entwickler · Python / C++ / Java</span>
+      <span data-lang="en">Developer · Python / C++ / Java</span><span data-lang="ru">Разработчик · Python / C++ / Java</span><span data-lang="de">Entwickler · Python / C++ / Java</span>
     </p>
     <p class="hero-subrole" data-reveal="fade-up" data-reveal-delay="3">
-      <span data-lang="ru">Студент Bauhaus-Universität Weimar, Informatik</span><span data-lang="en">Informatik student at Bauhaus-Universität Weimar</span><span data-lang="de">Informatik-Student an der Bauhaus-Universität Weimar</span>
+      <span data-lang="en">Informatik student at Bauhaus-Universität Weimar</span><span data-lang="ru">Студент Bauhaus-Universität Weimar, Informatik</span><span data-lang="de">Informatik-Student an der Bauhaus-Universität Weimar</span>
     </p>
   </div>
   <div class="hero-shapes" aria-hidden="true" data-reveal="fade-in" data-reveal-delay="2">
@@ -694,20 +784,10 @@ div[data-lang-group].is-active {
     <div class="section-head">
       <span class="section-mark" aria-hidden="true"></span>
       <h2 class="section-title">
-        <span data-lang="ru">О себе</span><span data-lang="en">About</span><span data-lang="de">Über mich</span>
+        <span data-lang="en">About</span><span data-lang="ru">О себе</span><span data-lang="de">Über mich</span>
       </h2>
     </div>
     <div class="about-grid">
-      
-      <div data-lang-group="ru" data-lang="ru">
-        
-        <p>Меня зовут Егор Михайлов. Я разработчик и студент программы Informatik в Bauhaus-Universität Weimar.</p>
-        
-        <p>Пишу на Python, C++ и Java — мне интересно и системное программирование, и быстрая разработка прикладных решений. Люблю разбираться, как всё устроено внутри, и доводить код до рабочего состояния, а не до состояния «почти готово».</p>
-        
-        <p>Сейчас совмещаю учёбу с практикой: изучаю архитектуру программ, алгоритмы и инструменты разработки, которые использую и в учебных, и в личных проектах.</p>
-        
-      </div>
       
       <div data-lang-group="en" data-lang="en">
         
@@ -716,6 +796,16 @@ div[data-lang-group].is-active {
         <p>I write code in Python, C++ and Java — I enjoy both systems programming and building practical applications quickly. I like understanding how things work under the hood, and getting code to actually work, not just "almost finished".</p>
         
         <p>Right now I'm combining studies with hands-on practice: exploring software architecture, algorithms, and development tools that I use in both coursework and personal projects.</p>
+        
+      </div>
+      
+      <div data-lang-group="ru" data-lang="ru">
+        
+        <p>Меня зовут Егор Михайлов. Я разработчик и студент программы Informatik в Bauhaus-Universität Weimar.</p>
+        
+        <p>Пишу на Python, C++ и Java — мне интересно и системное программирование, и быстрая разработка прикладных решений. Люблю разбираться, как всё устроено внутри, и доводить код до рабочего состояния, а не до состояния «почти готово».</p>
+        
+        <p>Сейчас совмещаю учёбу с практикой: изучаю архитектуру программ, алгоритмы и инструменты разработки, которые использую и в учебных, и в личных проектах.</p>
         
       </div>
       
@@ -738,17 +828,17 @@ div[data-lang-group].is-active {
     <div class="section-head">
       <span class="section-mark" aria-hidden="true"></span>
       <h2 class="section-title">
-        <span data-lang="ru">Навыки</span><span data-lang="en">Skills</span><span data-lang="de">Fähigkeiten</span>
+        <span data-lang="en">Skills</span><span data-lang="ru">Навыки</span><span data-lang="de">Fähigkeiten</span>
       </h2>
     </div>
     <div class="skills-grid">
       
       <div class="skill-group" data-reveal="fade-up" data-reveal-delay="0">
         <p class="skill-label">
-          <span data-lang="ru">Языки программирования</span><span data-lang="en">Programming languages</span><span data-lang="de">Programmiersprachen</span>
+          <span data-lang="en">Programming languages</span><span data-lang="ru">Языки программирования</span><span data-lang="de">Programmiersprachen</span>
         </p>
         
-        <ul class="skill-items" data-lang="ru">
+        <ul class="skill-items" data-lang="en">
           
           <li>Python</li>
           
@@ -758,7 +848,7 @@ div[data-lang-group].is-active {
           
         </ul>
         
-        <ul class="skill-items" data-lang="en">
+        <ul class="skill-items" data-lang="ru">
           
           <li>Python</li>
           
@@ -782,10 +872,10 @@ div[data-lang-group].is-active {
       
       <div class="skill-group" data-reveal="fade-up" data-reveal-delay="1">
         <p class="skill-label">
-          <span data-lang="ru">Инструменты</span><span data-lang="en">Tools</span><span data-lang="de">Werkzeuge</span>
+          <span data-lang="en">Tools</span><span data-lang="ru">Инструменты</span><span data-lang="de">Werkzeuge</span>
         </p>
         
-        <ul class="skill-items" data-lang="ru">
+        <ul class="skill-items" data-lang="en">
           
           <li>Git</li>
           
@@ -797,7 +887,7 @@ div[data-lang-group].is-active {
           
         </ul>
         
-        <ul class="skill-items" data-lang="en">
+        <ul class="skill-items" data-lang="ru">
           
           <li>Git</li>
           
@@ -825,18 +915,8 @@ div[data-lang-group].is-active {
       
       <div class="skill-group" data-reveal="fade-up" data-reveal-delay="2">
         <p class="skill-label">
-          <span data-lang="ru">Область интересов</span><span data-lang="en">Areas of interest</span><span data-lang="de">Interessensgebiete</span>
+          <span data-lang="en">Areas of interest</span><span data-lang="ru">Область интересов</span><span data-lang="de">Interessensgebiete</span>
         </p>
-        
-        <ul class="skill-items" data-lang="ru">
-          
-          <li>Алгоритмы и структуры данных</li>
-          
-          <li>Backend-разработка</li>
-          
-          <li>Системное программирование</li>
-          
-        </ul>
         
         <ul class="skill-items" data-lang="en">
           
@@ -845,6 +925,16 @@ div[data-lang-group].is-active {
           <li>Backend development</li>
           
           <li>Systems programming</li>
+          
+        </ul>
+        
+        <ul class="skill-items" data-lang="ru">
+          
+          <li>Алгоритмы и структуры данных</li>
+          
+          <li>Backend-разработка</li>
+          
+          <li>Системное программирование</li>
           
         </ul>
         
@@ -864,6 +954,85 @@ div[data-lang-group].is-active {
   </div>
 </section>
 
+<section id="services" data-reveal="fade-up">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-mark" aria-hidden="true"></span>
+      <h2 class="section-title">
+        <span data-lang="en">Services</span><span data-lang="ru">Услуги</span><span data-lang="de">Leistungen</span>
+      </h2>
+    </div>
+
+    <p class="services-intro">
+      <span data-lang="en">I build sites like this one for clients — fast, no clutter, multilingual when needed.</span><span data-lang="ru">Делаю сайты-визитки и небольшие веб-проекты на заказ — быстро, без лишнего, с многоязычностью при необходимости.</span><span data-lang="de">Ich erstelle Websites wie diese für Kunden — schnell, ohne unnötigen Schnickschnack, bei Bedarf mehrsprachig.</span>
+    </p>
+
+    <div class="capabilities-box" data-reveal="fade-up" data-reveal-delay="1">
+      <p class="capabilities-title">
+        <span data-lang="en">What's included</span><span data-lang="ru">Что входит в работу</span><span data-lang="de">Leistungsumfang</span>
+      </p>
+      
+      <ul class="capabilities-list" data-lang="en">
+        
+        <li>Responsive design for any screen</li>
+        
+        <li>Multilingual support (RU / EN / DE and others)</li>
+        
+        <li>Custom design, not a template</li>
+        
+        <li>Contact forms</li>
+        
+        <li>Interactive elements and animations</li>
+        
+        <li>Site deployment (hosting, domain)</li>
+        
+      </ul>
+      
+      <ul class="capabilities-list" data-lang="ru">
+        
+        <li>Адаптивный дизайн под любые экраны</li>
+        
+        <li>Многоязычность (RU / EN / DE и другие)</li>
+        
+        <li>Индивидуальный дизайн, а не шаблон</li>
+        
+        <li>Формы обратной связи</li>
+        
+        <li>Интерактивные элементы и анимации</li>
+        
+        <li>Размещение сайта (хостинг, домен)</li>
+        
+      </ul>
+      
+      <ul class="capabilities-list" data-lang="de">
+        
+        <li>Responsives Design für jeden Bildschirm</li>
+        
+        <li>Mehrsprachigkeit (RU / EN / DE und weitere)</li>
+        
+        <li>Individuelles Design statt Vorlage</li>
+        
+        <li>Kontaktformulare</li>
+        
+        <li>Interaktive Elemente und Animationen</li>
+        
+        <li>Website-Bereitstellung (Hosting, Domain)</li>
+        
+      </ul>
+      
+    </div>
+
+    <p class="services-price-note">
+      <span data-lang="en">Pricing is discussed individually, depending on the scope and complexity of the project.</span><span data-lang="ru">Стоимость обсуждается индивидуально, в зависимости от объёма и сложности проекта.</span><span data-lang="de">Der Preis wird individuell besprochen, abhängig vom Umfang und der Komplexität des Projekts.</span>
+    </p>
+
+    <a class="services-cta" href="#contact">
+      <span data-lang="en">Discuss a project</span><span data-lang="ru">Обсудить проект</span><span data-lang="de">Projekt besprechen</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
 <section id="demo" data-reveal="fade-up">
   <div class="wrap">
     <div class="demo-box" data-reveal="fade-up" data-reveal-delay="1">
@@ -871,7 +1040,7 @@ div[data-lang-group].is-active {
       <div class="demo-meta">
         <span class="demo-meta-item">
           <span class="demo-meta-label">
-            <span data-lang="ru">Сложность</span><span data-lang="en">Complexity</span><span data-lang="de">Komplexität</span>
+            <span data-lang="en">Complexity</span><span data-lang="ru">Сложность</span><span data-lang="de">Komplexität</span>
           </span>
           <span class="demo-meta-value">O(n²)</span>
         </span>
@@ -887,7 +1056,7 @@ div[data-lang-group].is-active {
     </div>
 
     <p class="demo-note">
-      <span data-lang="ru">Эта визуализация показывает работу алгоритма сортировки пузырьком: столбики представляют элементы массива, сравниваемая пара подсвечивается перед обменом. Цикл повторяется бесконечно на случайных данных.</span><span data-lang="en">This visualization shows the bubble sort algorithm at work: each bar represents an array element, and the compared pair is highlighted before each swap. The cycle repeats endlessly on randomized data.</span><span data-lang="de">Diese Visualisierung zeigt den Bubble-Sort-Algorithmus in Aktion: Jeder Balken steht für ein Array-Element, das verglichene Paar wird vor dem Tausch hervorgehoben. Der Zyklus wiederholt sich endlos mit zufälligen Daten.</span>
+      <span data-lang="en">This visualization shows the bubble sort algorithm at work: each bar represents an array element, and the compared pair is highlighted before each swap. The cycle repeats endlessly on randomized data.</span><span data-lang="ru">Эта визуализация показывает работу алгоритма сортировки пузырьком: столбики представляют элементы массива, сравниваемая пара подсвечивается перед обменом. Цикл повторяется бесконечно на случайных данных.</span><span data-lang="de">Diese Visualisierung zeigt den Bubble-Sort-Algorithmus in Aktion: Jeder Balken steht für ein Array-Element, das verglichene Paar wird vor dem Tausch hervorgehoben. Der Zyklus wiederholt sich endlos mit zufälligen Daten.</span>
     </p>
   </div>
 </section>
@@ -897,16 +1066,16 @@ div[data-lang-group].is-active {
     <div class="section-head">
       <span class="section-mark" aria-hidden="true"></span>
       <h2 class="section-title">
-        <span data-lang="ru">Контакты</span><span data-lang="en">Contact</span><span data-lang="de">Kontakt</span>
+        <span data-lang="en">Contact</span><span data-lang="ru">Контакты</span><span data-lang="de">Kontakt</span>
       </h2>
     </div>
     <div class="contact-box">
       <p class="contact-text">
-        <span data-lang="ru">Открыт к учебным и рабочим проектам, а также к новым знакомствам.</span><span data-lang="en">Open to academic and work projects, as well as new connections.</span><span data-lang="de">Offen für akademische und berufliche Projekte sowie neue Kontakte.</span>
+        <span data-lang="en">Open to academic and work projects, as well as new connections.</span><span data-lang="ru">Открыт к учебным и рабочим проектам, а также к новым знакомствам.</span><span data-lang="de">Offen für akademische und berufliche Projekte sowie neue Kontakte.</span>
       </p>
       <div class="contact-email-wrap">
         <span class="contact-email-label">
-          <span data-lang="ru">Email</span><span data-lang="en">Email</span><span data-lang="de">Email</span>
+          <span data-lang="en">Email</span><span data-lang="ru">Email</span><span data-lang="de">Email</span>
         </span>
         <a class="contact-email" href="mailto:egor.s.mikhailov@gmail.com">egor.s.mikhailov@gmail.com</a>
       </div>
@@ -917,7 +1086,7 @@ div[data-lang-group].is-active {
 <footer>
   <div class="wrap">
     <span>
-      <span data-lang="ru">© 2026 Михайлов Егор</span><span data-lang="en">© 2026 Egor Mikhailov</span><span data-lang="de">© 2026 Egor Mikhailov</span>
+      <span data-lang="en">© 2026 Egor Mikhailov</span><span data-lang="ru">© 2026 Михайлов Егор</span><span data-lang="de">© 2026 Egor Mikhailov</span>
     </span>
     <span class="footer-shapes" aria-hidden="true">
       <span></span><span></span><span></span>
@@ -964,10 +1133,10 @@ div[data-lang-group].is-active {
     var fromHash = window.location.hash.replace("#", "");
     if (LANGS.indexOf(fromHash) !== -1) return fromHash;
 
-    var nav = (navigator.language || "ru").slice(0, 2).toLowerCase();
+    var nav = (navigator.language || "en").slice(0, 2).toLowerCase();
     if (LANGS.indexOf(nav) !== -1) return nav;
 
-    return "ru";
+    return "en";
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -1010,7 +1179,7 @@ div[data-lang-group].is-active {
     function setStatus(state) {
       if (!statusEl) return;
       statusEl.dataset.state = state;
-      var lang = window.__currentLang || "ru";
+      var lang = window.__currentLang || "en";
       var labels = {
         running: { ru: "выполняется", en: "running", de: "läuft" },
         done: { ru: "готово", en: "done", de: "fertig" }
